@@ -8,6 +8,7 @@ const cors = require('cors');
 const { v4: uuidv4 } = require('uuid');
 const { graphqlHTTP } = require('express-graphql');
 const fileUtil = require('./utils/removeFile')
+const serverless = require("serverless-http");
 
 const graphqlSchema = require('./graphql/schema');
 const graphqlResolver = require('./graphql/resolvers');
@@ -100,3 +101,7 @@ mongoose
     console.log('Client connected in ' + process.env.APP_PORT);
   })
   .catch(err => console.log(err));
+
+  module.exports.handler = serverless(app);
+
+  
